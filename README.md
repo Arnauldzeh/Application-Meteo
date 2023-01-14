@@ -11,7 +11,7 @@ l'API IP Geolocation qui fournit des informations de localisation pour toute adr
   
 3-)
 l'API OpenCage Geocoding API qui fournit la latitude et la longitude d'une ville, qui sera utilisé pour récupérer les données météreologique.
-  accessible ici 👉 [https://home.openweathermap.org/api_keys](https://opencagedata.com/)
+  accessible ici 👉 https://opencagedata.com/
 
 # l'application en lui meme 
           👇👇👇
