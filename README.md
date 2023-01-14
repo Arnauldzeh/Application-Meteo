@@ -1,5 +1,5 @@
 # Application Meteo   météo app
-#API Utilisé dans ce projet
+API Utilisé dans ce projet
 Openweathermap, accessible ici 👉 https://home.openweathermap.org/api_keys
 
 l'application en lui meme 
