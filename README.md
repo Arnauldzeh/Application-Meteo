@@ -1,5 +1,5 @@
-# Application Meteo   météo app
-Desritption:
+# Application Meteo
+# Desritption:
 L’application permet à un utilisateur de se connecter et avoir les données de prévisions météorologiques de sa localité en temps réel ( c’est-à-dire afficher les données venant directement du serveur météorologiques  à travers l’API OpenweatherMap)
           L’utilisateur a également la possibilité de rechercher une localité quelconque et avoir les données météorologique de celle-ci.
           
@@ -7,7 +7,8 @@ Front end : La bibliothèque Streamlit
 Back-end : langage : python 
                     Framework : Django framework 
 API météorologique : openweatherMap
-IDE : visual studio code Microsoft 
+IDE : visual studio code Microsoft
+ 
 
 
 # API Utilisé dans ce projet
