@@ -1,0 +1,48 @@
+/* Hide streamlit branding */
+#MainMenu {
+    visibility: hidden;
+}
+
+footer{
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}
+
+div.container {
+    border : 1px solid blue ;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    height: fit-content;
+    }
+    
+    .header {
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    
+    .header>p{
+    
+      font-weight: Bold;
+      color: blue;
+      text-transform: uppercase;
+      font-size: 16px;
+    }
+    
+    .actu>p{
+    
+        color: blue;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    
+    .actu>p>span{
+    
+        font-size: 14px;
+        font-weight: normal;
+        text-transform: none;
+    }
+    
+  
