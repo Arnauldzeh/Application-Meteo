@@ -4,8 +4,9 @@ L’application permet à un utilisateur de se connecter et avoir les données d
           L’utilisateur a également la possibilité de rechercher une localité quelconque et avoir les données météorologique de celle-ci.
           
 Front end : La bibliothèque Streamlit
-Back-end : langage : python 
-                    Framework : Django framework 
+
+Back-end : langage : python
+
 API météorologique : openweatherMap
 IDE : visual studio code Microsoft
  
