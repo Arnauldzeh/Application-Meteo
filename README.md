@@ -1,2 +1,2 @@
-# Meteo
+# Application Meteo
 météo app
