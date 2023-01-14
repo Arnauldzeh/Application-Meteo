@@ -18,10 +18,12 @@ st.set_page_config(
 
 with st.container() :
 
- st.title("Application de prévision météreologique Météo")
+ st.title("WEATHER FORCAST APP")
 
 col1, col2, col3 = st.columns(3)
 
+def to_date(ts:int):
+    return datetime.utcfromtimestamp(ts).date()
 
 
 
@@ -107,48 +109,62 @@ def weather_app():
             try:
 
                 with col1: 
-                    col1.success("Meteo Actuelle")
-                    st.write("Récupération de la météo à votre position actuelle:")
+                    col1.success("Current Weather")
+                    st.write("Predictions at  {}".format(location['city']))
                     st.image(data["icon_url"], width=100)
-                    st.write("Température: {}°C".format(data["main"]["temp"]))
+                    st.write("{}".format(data["weather"][0]["description"]))
+                    data['dt_txt']=datetime.utcfromtimestamp(data['dt']).strftime("%A %d %b %Y %H:%M")
+                    st.write("Date: {}".format(data["dt_txt"]))
+                    st.write("Temperature: {}°C".format(data["main"]["temp"]))
                     st.write("Humidité: {}%".format(data["main"]["humidity"]))
                     st.write("Pression: {} hPa".format(data["main"]["pressure"]))
             except KeyError:
                 st.write("Données météorologiques non disponibles pour votre position actuelle.")
     else:
-        st.write("Impossible de récupérer les informations de géolocalisation.")
-    with col2:   
-        city = st.text_input("Entrez le nom de la ville:")
-        btn_Valider = st.button("Valider") 
+        st.write("Impossible to get Weather Coordinate.")
+    with col2:
+        col2.success("Enter your town name")
+        city = st.text_input("")
+        btn_Valider = st.button("Run") 
     if btn_Valider: 
         lat, lon = get_city_coordinates(city)
         if lat and lon:
             data = get_weather(lat, lon)
             if data:
+
+
                 with col3 :
-                    st.write("Météo à {}:".format(city))
+
+                    col3.warning("Predictions at {} Results ".format(city))
                     st.image(data["icon_url"], width=100)
-                    st.write("Température: {}°C".format(data["main"]["temp"]))
-                    st.write("Humidité: {}%".format(data["main"]["humidity"]))
-                    st.write("Pression: {} hPa".format(data["main"]["pressure"]))
+                    st.write("{}".format(data["weather"][0]["description"]))
+                    data['dt_txt']=datetime.utcfromtimestamp(data['dt']).strftime("%A %d %b %Y %H:%M")
+                    st.write("Date: {}".format(data["dt_txt"]))
+                    st.write("Temperature: {}°C".format(data["main"]["temp"]))
+                    st.write("Humidity: {}%".format(data["main"]["humidity"]))
+                    st.write("Presure: {} hPa".format(data["main"]["pressure"]))
+                    dat0 = to_date(data['dt'])
                 forecast_data = get_forecast_weather(city)
 
                 containt = st.container()
 
                 with containt :
-                    st.write("Prévisions météo pour les prochains 5 jours:")
-                    cols = st.columns(20)
-                    a = 0
+                    st.write("Weather forecast for the next 5 days:")
+                    cols = st.columns(6)
+                
                     for day in forecast_data:
-                            with containt :    
-                                with cols[a]:
-                                    st.image(data["icon_url"], width=100)
-                                    st.write("Date: {}".format(day["dt_txt"]))
-                                    st.write("Température: {}°C".format(day["main"]["temp"]))
-                                    st.write("Humidité: {}%".format(day["main"]["humidity"]))
-                                    a = a + 1
+                        dat = to_date(day['dt']) 
+                        a = (dat - dat0).days
+                        day['dt_txt']=datetime.utcfromtimestamp(day['dt']).strftime("%A %d %b %Y %H:%M")
+                        with cols[a]:
+                            st.image(day["icon_url"], width=100)
+                            st.write("{}".format(day["weather"][0]["description"]))
+                            st.write("Date: {}".format(day["dt_txt"]))
+                            st.write("Temperature: {}°C".format(day["main"]["temp"]))
+                            st.write("Humidity: {}%".format(day["main"]["humidity"]))               
+                           
         else:
-            st.write("Impossible de récupérer les coordonnées de la ville.")
+            st.write("Impossible to get Town Coordinates.")
             st.write("Veuillez remplacer 'YOUR_API_KEY' par votre propre clé API")
 if __name__ == "__main__":
     weather_app()
